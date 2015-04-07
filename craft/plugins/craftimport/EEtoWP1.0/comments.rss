@@ -1,0 +1,43 @@
+<?php
+
+global $IN;
+$IN->QSTR = '{embed:the_entry_id}'
+
+?>
+
+{exp:comment:entries weblog="{master_weblog_name}" limit="1000" sort="asc"}
+{if comments}
+<wp:comment>
+<wp:comment_id></wp:comment_id>
+<wp:comment_author><![CDATA[{author}]]></wp:comment_author>
+<wp:comment_author_email>{email}</wp:comment_author_email>
+<wp:comment_author_url>{exp:xml_encode}{url}{/exp:xml_encode}</wp:comment_author_url>
+<wp:comment_author_IP>{ip_address}</wp:comment_author_IP>
+<wp:comment_date>{comment_date format="%Y-%m-%d %H:%i:%s"}</wp:comment_date>
+<wp:comment_date_gmt>{gmt_comment_date format="%Y-%m-%d %H:%i:%s"}</wp:comment_date_gmt>
+<wp:comment_content><![CDATA[{comment}]]></wp:comment_content>
+<wp:comment_approved>1</wp:comment_approved>
+<wp:comment_type></wp:comment_type>
+<wp:comment_parent>0</wp:comment_parent>
+<wp:comment_user_id>0</wp:comment_user_id>
+</wp:comment>
+{/if}
+{if trackbacks}
+<wp:comment>
+<wp:comment_id></wp:comment_id>
+<wp:comment_author><![CDATA[{weblog_name}]]></wp:comment_author>
+<wp:comment_author_email></wp:comment_author_email>
+<wp:comment_author_url>{trackback_url}/</wp:comment_author_url>
+<wp:comment_author_IP>{trackback_ip}</wp:comment_author_IP>
+<wp:comment_date>{trackback_date format="%Y-%m-%d %H:%i:%s"}</wp:comment_date>
+<wp:comment_date_gmt></wp:comment_date_gmt>
+<wp:comment_content><![CDATA[<strong>{title}]]</strong>
+
+{content}]]></wp:comment_content>
+<wp:comment_approved>1</wp:comment_approved>
+<wp:comment_type>trackback</wp:comment_type>
+<wp:comment_parent>0</wp:comment_parent>
+<wp:comment_user_id>0</wp:comment_user_id>
+</wp:comment>
+{/if}
+{/exp:comment:entries}
